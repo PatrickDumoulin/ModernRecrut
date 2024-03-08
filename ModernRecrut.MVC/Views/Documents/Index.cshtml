@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.DocumentModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des documents</h1>
+
+<p>
+    <a asp-action="Create">Ajouter un nouveau document</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chemin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chemin)
+            </td>
+            <td>
+                    <a class="btn btn-primary" href="https://localhost:7151/documents/@item.Chemin">Consulter</a> |
+                    @Html.ActionLink("Supprimer", "Delete", new { chemin = item.Chemin })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

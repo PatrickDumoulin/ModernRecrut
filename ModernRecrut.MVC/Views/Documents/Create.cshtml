@@ -1,0 +1,37 @@
+﻿@model ModernRecrut.MVC.Models.DocumentModel
+
+@{
+    ViewData["Title"] = "Ajouter";
+}
+
+<h1>Ajouter</h1>
+
+<h4>Nouveau document</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-controller="Documents" asp-action="Create">
+            <div class="form-group">
+                <label>Type de Document</label>
+                <select asp-for="Type" class="form-control">
+                    <option value="CV">CV</option>
+                    <option value="LettreDeMotivation">Lettre de Motivation</option>
+                    <option value="Diplomes">Diplômes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Télécharger Document</label>
+                <input type="file" name="file" class="form-control accept=application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+            </div>
+            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

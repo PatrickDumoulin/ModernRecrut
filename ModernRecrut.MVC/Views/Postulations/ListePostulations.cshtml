@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.Postulation>
+
+@{
+    ViewData["Title"] = "Liste des Postulations";
+}
+
+<h1>Liste des Postulations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCandidat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OffreDEmploiId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PretentionSalariale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDisponibilite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCandidat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OffreDEmploiId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PretentionSalariale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDisponibilite)
+            </td>
+            <td>
+                <a asp-action="Noter" asp-route-id="@item.Id">Noter</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

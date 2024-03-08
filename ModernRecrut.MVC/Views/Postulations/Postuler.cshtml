@@ -1,0 +1,65 @@
+﻿@model ModernRecrut.MVC.DTO.RequetePostulation
+
+@{
+    ViewData["Title"] = "Postuler";
+
+    @* Style messages d'erreurs *@
+    <style>
+        .Errors {
+        color: red; 
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    </style>
+}
+
+<h1>Postuler</h1>
+
+@* Messages d'erreurs *@
+
+<div class="Errors">
+    @Html.ValidationMessage("Error")
+    @Html.ValidationMessage("all")
+</div>
+
+
+@* Contenu *@
+
+<h4>Postulation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Postuler">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="IdCandidat" class="form-control" type="hidden" />
+                <span asp-validation-for="IdCandidat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="OffreDEmploiId" class="form-control" type="hidden"/>
+                <span asp-validation-for="OffreDEmploiId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PretentionSalariale" class="control-label" ></label>
+                <input asp-for="PretentionSalariale" class="form-control" value="0" />
+                <span asp-validation-for="PretentionSalariale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDisponibilite" class="control-label"></label>
+                <input asp-for="DateDisponibilite" class="form-control" value="@DateTime.Today"/>
+                <span asp-validation-for="DateDisponibilite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="OffresEmplois" asp-action="Index">Retoure à la liste des offres d'emplois</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
